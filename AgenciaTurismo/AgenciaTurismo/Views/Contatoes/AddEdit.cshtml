@@ -1,0 +1,33 @@
+﻿@model AgenciaTurismo.Models.Contato
+
+@{
+    ViewData["Title"] = "Contato";
+}
+
+<div class="row">
+    <div class="col-md-6 form-contato m-auto">
+            <h4>Cadastre seu email, e receba novidades em primeira mão!</h4>
+        <form asp-action="AddEdit">
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-8">
+                <div class="form-group d-flex align-items-center">
+                <input type="submit" value="Salvar" class="btn btn-cad btn-block"/>
+               <a asp-action="Index" class="btn btn-cad ml-3 d-flex align-items-center"><i class="bi bi-arrow-left-square pr-2 mr-2"></i>Voltar</a>
+            </div>
+            </div>          
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AgenciaTurismo.Models.Promocao>
+
+@{
+    ViewData["Title"] = "Promocao";
+}
+
+<h1>Relatório das Promoções Ativas</h1>
+
+
+<table class="table form-contato m-auto table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Desconto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destino)
+            </th>
+            <th>
+                <a asp-action="AddEdit" class="btn btn-outine-success btn-color"><i class="bi bi-folder-plus"></i>Novo</a>            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            var valor = Convert.ToDouble(item.Destino.Valor);
+            Double valor2 = (valor / 100) * item.Desconto;
+            Double valorFinal = valor - valor2;
+
+        <tr>
+            <td>
+               %@Html.DisplayFor(modelItem => item.Desconto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destino.Nome)
+            </td>
+            <td>
+               Valor Total: R$ @valorFinal
+            </td>
+            <td>
+                <a asp-action="AddEdit" class="btn btn-color" asp-route-id="@item.Id"><i class="bi bi-pencil-square "></i></a> |
+                <a asp-action="Delete" class="btn btn-color" asp-route-id="@item.Id"  onclick="return confirm('Deseja realmente deletar essa promocao?')" class="text-danger ml-1"><i class="bi bi-trash "></i> </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

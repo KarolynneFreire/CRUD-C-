@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AgenciaTurismo.Models.Contato>
+
+@{
+    ViewData["Title"] = "Cadastro-Contato";
+}
+
+<h1>Relatório dos Contatos Ativos</h1>
+
+
+<table class="table form-contato m-auto table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+             <th> 
+                <a asp-action="AddEdit" class="btn btn-outine-success btn-color"><i class="bi bi-folder-plus"></i>Novo</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="AddEdit" class="btn btn-color" asp-route-id="@item.Id"><i class="bi bi-pencil-square "></i></a> |
+                <a asp-action="Delete" class="btn btn-color" asp-route-id="@item.Id"  onclick="return confirm('Deseja realmente deletar o contato?')" class="text-danger ml-1"><i class="bi bi-trash "></i> </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

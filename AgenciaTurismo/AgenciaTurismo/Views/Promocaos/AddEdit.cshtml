@@ -1,0 +1,35 @@
+﻿@model AgenciaTurismo.Models.Promocao
+
+@{
+    ViewData["Title"] = "Promocao";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-6 form-contato m-auto">
+        <h4>Cadastro de Promocao</h4>
+        <form asp-action="AddEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Desconto" class="control-label"></label>
+                <input asp-for="Desconto" class="form-control" />
+                <span asp-validation-for="Desconto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DestinoId" class="control-label"></label>
+                <select asp-for="DestinoId" class ="form-control" asp-items="ViewBag.DestinoId"></select>
+            </div>
+            <div class="form-group col-md-8">
+                <div class="form-group d-flex align-items-center">
+                <input type="submit" value="Salvar" class="btn btn-cad btn-block"/>
+               <a asp-action="Index" class="btn btn-cad ml-3 d-flex align-items-center"><i class="bi bi-arrow-left-square pr-2 mr-2"></i>Voltar</a>
+            </div>
+              </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

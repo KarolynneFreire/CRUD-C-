@@ -1,0 +1,56 @@
+﻿@model IEnumerable<AgenciaTurismo.Models.Destino>
+
+@{
+    ViewData["Title"] = "Cadastro-Destinos";
+}
+
+<h1>Relatório dos Destinos Ativos</h1>
+
+
+<table class="table form-contato m-auto table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th><a asp-action="AddEdit" class="btn btn-outine-success btn-color"><i class="bi bi-folder-plus"></i>Novo</a></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+               R$@Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                <a asp-action="AddEdit" class="btn btn-color" asp-route-id="@item.Id"><i class="bi bi-pencil-square "></i></a> |
+                <a asp-action="Delete" class="btn btn-color" asp-route-id="@item.Id"  onclick="return confirm('Deseja realmente deletar o destino?')" class="text-danger ml-1"><i class="bi bi-trash "></i> </a>
+           </td>
+        </tr>
+}
+    </tbody>
+</table>
